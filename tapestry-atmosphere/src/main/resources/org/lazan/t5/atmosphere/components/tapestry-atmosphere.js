@@ -19,13 +19,13 @@ T5.extendInitializers({
 				activePageName: options.activePageName,
 				containingPageName: options.containingPageName,
 			};
-			subsocket.push(Object.toJSON(data));
+			subsocket.push(JSON.stringify(data));
 		};		
 
 		request.onMessage = function (response) {
 			var messageJson = response.responseBody;
 			// prototype specific
-			var message = messageJson.evalJSON();
+			var message = JSON.parse(messageJson);
 			
 			for (var clientId in message) {
 				var singleResponse = message[clientId];

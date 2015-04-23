@@ -13,6 +13,11 @@
 			<artifactId>tapestry-atmosphere</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.got5</groupId>
+            <artifactId>tapestry5-jquery</artifactId>
+            <version>${tapestry-jquery-version}</version>
+        </dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -25,12 +30,37 @@
 			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>uklance-releases</id>
-			<url>https://raw.github.com/uklance/releases/master</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>uklance-releases</id>
+            <url>https://raw.github.com/uklance/releases/master</url>
+        </repository>
+        <!-- This repository is only needed when the Tapestry version is a preview release, rather
+             than a final release. -->
+        <repository>
+            <id>apache-staging</id>
+            <url>https://repository.apache.org/content/groups/staging/</url>
+        </repository>
+        <repository>
+            <id>devlab722-repo</id>
+            <url>
+                http://nexus.devlab722.net/nexus/content/repositories/releases
+            </url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>devlab722-snapshot-repo</id>
+            <url>
+                http://nexus.devlab722.net/nexus/content/repositories/snapshots
+            </url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<resources>
@@ -62,6 +92,7 @@
 		<servlet.version>2.5</servlet.version>
 		<atmosphere.version>2.2.3</atmosphere.version>
 		<atmosphere-compat.version>2.0.1</atmosphere-compat.version>
+        <tapestry-jquery-version>3.3.7</tapestry-jquery-version>
 	</properties>
 
 	<profiles>
@@ -77,6 +108,15 @@
 					<version>${atmosphere.version}</version>
 				</dependency>
 			</dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <version>9.2.6.v20141205</version>
+                    </plugin>
+                </plugins>
+            </build>
 		</profile>
 		<profile>
 			<id>tomcat7</id>
