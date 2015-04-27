@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lazan</groupId>
 	<artifactId>tapestry-atmosphere</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>0.0.6.1</version>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
 	<dependencies>
@@ -40,7 +40,7 @@
 	<repositories>
 		<repository>
 			<id>uklance-releases</id>
-			<url>https://raw.github.com/uklance/releases/master</url>
+			<url>https://raw.github.com/mizupowa/releases/master</url>
 		</repository>
 	</repositories>
 	<build>

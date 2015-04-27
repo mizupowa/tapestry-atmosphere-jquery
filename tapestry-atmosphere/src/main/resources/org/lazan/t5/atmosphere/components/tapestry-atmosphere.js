@@ -38,7 +38,7 @@ T5.extendInitializers({
 				} else if (pushTarget.update == 'APPEND') {
                     $(element).append(content);
 				} else {
-					element.html(content);
+                    $(element).html(content);
 				}
                 $.tapestry.utils.loadScriptsInReply(singleResponse, undefined);
 			}
