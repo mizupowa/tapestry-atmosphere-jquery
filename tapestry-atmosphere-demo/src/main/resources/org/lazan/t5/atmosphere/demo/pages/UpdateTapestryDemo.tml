@@ -1,0 +1,17 @@
+<html t:type="layout" title="Tapestry update" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:atmos="tapestry-library:atmos">
+<atmos:container transport="websocket" fallbackTransport="long-polling">
+    <t:zone t:id="linkZone">
+        <t:actionlink t:id="clickForUpdate" zone="^">clickForUpdate</t:actionlink>
+        <t:atmos.pushTarget
+                topics="rooms/${topic}/messages"
+                event="update"
+                update="prepend"
+                class="well" />
+        <t:block t:id="messageBlock">
+            <t:actionlink t:id="aTestLink" context="message" zone="^">${message}</t:actionlink>
+        </t:block>
+    </t:zone>
+</atmos:container>
+</html>

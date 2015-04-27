@@ -24,6 +24,11 @@ public class AppModule {
 		config.add(SymbolConstants.PRODUCTION_MODE, "false");
 		config.add(SymbolConstants.SUPPORTED_LOCALES, "en");
 		config.add(ComponentParameterConstants.ZONE_UPDATE_METHOD, "show");
+
+        config.add("tapestry-offline.serverName", "test.com");
+        config.add("tapestry-offline.remoteHost", "tesdfsdfst.com");
+        config.add("tapestry-offline.localPort", "8080");
+        config.add("tapestry-offline.serverPort", "8080");
 	}
 
 	public static void contributeTopicAuthorizer(OrderedConfiguration<TopicAuthorizer> config) {

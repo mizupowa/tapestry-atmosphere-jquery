@@ -34,14 +34,13 @@ T5.extendInitializers({
 				
 				var element = document.getElementById(clientId);
 				if (pushTarget.update == 'PREPEND') {
-					var html = content + element.innerHTML;
-					element.innerHTML = html;
+                    $(element).prepend(content);
 				} else if (pushTarget.update == 'APPEND') {
-					var html = element.innerHTML + content;
-					element.innerHTML = html;
+                    $(element).append(content);
 				} else {
-					element.innerHTML = content;
+					element.html(content);
 				}
+                $.tapestry.utils.loadScriptsInReply(singleResponse, undefined);
 			}
 		};
 

@@ -11,11 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.lazan.t5.atmosphere.demo.model.ChatMessage;
+import org.lazan.t5.atmosphere.demo.pages.UpdateTapestryDemo;
 import org.lazan.t5.atmosphere.services.AtmosphereBroadcaster;
 
 public class ChatManagerImpl implements ChatManager {
 	private final String ADMINISTRATOR = "admin";
-	private static final List<String> ROOMS = Collections.unmodifiableList(Arrays.asList("cars", "cats", "dogs", "java", "tapestry"));
+	private static final List<String> ROOMS = Collections.unmodifiableList(Arrays.asList("cars", "cats", "dogs", "java", "tapestry", UpdateTapestryDemo.ROOM_NAME));
 	private static final int RECENT_MESSAGE_COUNT = 15;
 	
 	private final ConcurrentMap<String, ChatRoom> chatRooms;

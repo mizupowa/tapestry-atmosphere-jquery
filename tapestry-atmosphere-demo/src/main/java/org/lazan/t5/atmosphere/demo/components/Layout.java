@@ -13,7 +13,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 public class Layout {
 	private static final MenuGroup[] MENU_GROUPS = {
 		new MenuGroup("Examples",
-			new MenuItem("Chat", "ChatDemo")
+			new MenuItem("Chat", "ChatDemo"),
+			new MenuItem("Update tapestry", "UpdateTapestryDemo")
 		)
 	};
 	
