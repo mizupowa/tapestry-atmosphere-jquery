@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventContext;
+import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -62,8 +63,12 @@ public class Container {
 
 	private List<PushTargetModel> pushTargets;
 	private Set<String> topics;
-	
-	void setupRender() {
+
+    private String clientId;
+
+	void setupRender(MarkupWriter markupWriter) {
+        clientId = javascriptSupport.allocateClientId("at-container");
+        markupWriter.element("div","id",clientId,"class","at-container");
 		pushTargets = CollectionFactory.newList();
 		topics = new LinkedHashSet<String>();
 		environment.push(ContainerModel.class, new ContainerModel() {
@@ -74,12 +79,13 @@ public class Container {
 		});
 	}
 	
-	void afterRenderBody() {
+	void afterRenderBody(MarkupWriter markupWriter) {
 		if (!pushTargets.isEmpty()) {
 			JSONObject config = createConfig();
 			javascriptSupport.addInitializerCall("atmosphereContainer", config);
 			environment.pop(ContainerModel.class);
 		}
+        markupWriter.end();
 	}
 	
 	JSONObject createConfig() {
@@ -95,6 +101,7 @@ public class Container {
 		putIfNotNull(connectOptions, "fallbackTransport", fallbackTransport);
 		
 		JSONObject config = new JSONObject();
+        config.put("containerId",clientId);
 		config.put("connectOptions", connectOptions);
 		EventContext ac = pageGlobals.getPageActivationContext();
 		JSONArray acJson = new JSONArray();

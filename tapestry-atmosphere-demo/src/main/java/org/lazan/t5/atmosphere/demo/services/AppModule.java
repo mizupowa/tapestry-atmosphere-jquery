@@ -23,7 +23,7 @@ public class AppModule {
 	public static void contributeApplicationDefaults(MappedConfiguration<String, Object> config) {
 		config.add(SymbolConstants.PRODUCTION_MODE, "false");
 		config.add(SymbolConstants.SUPPORTED_LOCALES, "en");
-		config.add(ComponentParameterConstants.ZONE_UPDATE_METHOD, "show");
+		//config.add(ComponentParameterConstants.ZONE_UPDATE_METHOD, "show");
 
         config.add("tapestry-offline.serverName", "test.com");
         config.add("tapestry-offline.remoteHost", "tesdfsdfst.com");
