@@ -87,6 +87,7 @@ public class PerRequestBroadcastFilterImpl implements PerRequestBroadcastFilter 
 		DefaultOfflineRequestContext requestContext = new DefaultOfflineRequestContext();
 		requestContext.setCookies(request.getCookies());
 		requestContext.setXHR(true);
+        requestContext.setSecure(request.isSecure());
 		if (session != null) {
 			Map<String, Object> sessionMap = new HashMap<String, Object>();
 			Enumeration<String> attNames = session.getAttributeNames();
