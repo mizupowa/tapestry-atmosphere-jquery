@@ -80,11 +80,9 @@ public class Container {
 	}
 	
 	void afterRenderBody(MarkupWriter markupWriter) {
-		if (!pushTargets.isEmpty()) {
-			JSONObject config = createConfig();
-			javascriptSupport.addInitializerCall("atmosphereContainer", config);
-			environment.pop(ContainerModel.class);
-		}
+		JSONObject config = createConfig();
+		javascriptSupport.addInitializerCall("atmosphereContainer", config);
+		environment.pop(ContainerModel.class);
         markupWriter.end();
 	}
 	
