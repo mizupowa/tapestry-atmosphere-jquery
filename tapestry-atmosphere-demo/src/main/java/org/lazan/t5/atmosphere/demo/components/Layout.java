@@ -14,7 +14,8 @@ public class Layout {
 	private static final MenuGroup[] MENU_GROUPS = {
 		new MenuGroup("Examples",
 			new MenuItem("Chat", "ChatDemo"),
-			new MenuItem("Update tapestry", "UpdateTapestryDemo")
+			new MenuItem("Update tapestry", "UpdateTapestryDemo"),
+			new MenuItem("Ajax Update", "AjaxUpdate")
 		)
 	};
 	

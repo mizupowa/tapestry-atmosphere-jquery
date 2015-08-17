@@ -62,7 +62,9 @@
                 subsocket = atmosphere.subscribe(request);
             }
 
-            updatePushTarget(options.pushTargets);
+            if (options.pushTargets && options.pushTargets.length>0){
+                updatePushTarget(options.pushTargets);
+            }
 
             document.getElementById(options.containerId)['atmContainer'] =
             {
