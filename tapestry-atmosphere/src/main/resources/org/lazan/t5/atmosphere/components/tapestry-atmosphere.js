@@ -8,9 +8,9 @@
             var pushTargets = [];
             var pushTargetsById = {};
             var request = options.connectOptions;
+            var subsocket;
 
             function updatePushTarget(targets) {
-                var subsocket;
                 var pushTarget;
                 var i;
                 for (i = 0; i < pushTargets.length; ++i) {
@@ -25,46 +25,44 @@
                     pushTargets.push(targets[i]);
                     pushTargetsById[targets[i].id] = targets[i];
                 }
-
-
-                request.onOpen = function (response) {
-                    var data = {
-                        pushTargets: pushTargets,
-                        ac: options.ac,
-                        activePageName: options.activePageName,
-                        containingPageName: options.containingPageName,
-                    };
-                    subsocket.push(JSON.stringify(data));
+                var data = {
+                    pushTargets: pushTargets,
+                    ac: options.ac,
+                    activePageName: options.activePageName,
+                    containingPageName: options.containingPageName,
                 };
+                subsocket.push(JSON.stringify(data));
+            }
 
-                request.onMessage = function (response) {
-                    var messageJson = response.responseBody;
-                    // prototype specific
-                    var message = JSON.parse(messageJson);
+            request.onOpen = function (response) {
+                if (options.pushTargets && options.pushTargets.length > 0) {
+                    updatePushTarget(options.pushTargets);
+                }
+            };
 
-                    for (var clientId in message) {
-                        var singleResponse = message[clientId];
-                        var content = singleResponse.content;
-                        var pushTarget = pushTargetsById[clientId];
+            request.onMessage = function (response) {
+                var messageJson = response.responseBody;
+                // prototype specific
+                var message = JSON.parse(messageJson);
 
-                        var element = document.getElementById(clientId);
-                        if (pushTarget.update == 'PREPEND') {
-                            $(element).prepend(content);
-                        } else if (pushTarget.update == 'APPEND') {
-                            $(element).append(content);
-                        } else {
-                            $(element).html(content);
-                        }
-                        $.tapestry.utils.loadScriptsInReply(singleResponse, undefined);
+                for (var clientId in message) {
+                    var singleResponse = message[clientId];
+                    var content = singleResponse.content;
+                    var pushTarget = pushTargetsById[clientId];
+
+                    var element = document.getElementById(clientId);
+                    if (pushTarget.update == 'PREPEND') {
+                        $(element).prepend(content);
+                    } else if (pushTarget.update == 'APPEND') {
+                        $(element).append(content);
+                    } else {
+                        $(element).html(content);
                     }
-                };
-                atmosphere.unsubscribe();
-                subsocket = atmosphere.subscribe(request);
-            }
-
-            if (options.pushTargets && options.pushTargets.length>0){
-                updatePushTarget(options.pushTargets);
-            }
+                    $.tapestry.utils.loadScriptsInReply(singleResponse, undefined);
+                }
+            };
+            atmosphere.unsubscribe();
+            subsocket = atmosphere.subscribe(request);
 
             document.getElementById(options.containerId)['atmContainer'] =
             {

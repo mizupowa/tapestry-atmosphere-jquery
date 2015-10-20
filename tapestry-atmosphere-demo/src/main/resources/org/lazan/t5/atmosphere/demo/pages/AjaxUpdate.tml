@@ -1,7 +1,7 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:atmos="tapestry-library:atmos">
 <head></head>
 <body>
-<atmos:container transport="long-polling" fallbackTransport="long-polling">
+<atmos:container transport="websocket" fallbackTransport="long-polling">
     <t:zone t:id="updateZone" id="updateZone">
         <t:actionlink t:id="updateLink" zone="updateZone">Update</t:actionlink>
         <t:actionlink t:id="updatePush" zone="updateZone">Update</t:actionlink>
