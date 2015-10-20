@@ -17,7 +17,7 @@ public class PushTargetUpdate implements Runnable, ContainerModel {
 
     public PushTargetUpdate(JavaScriptSupport javaScriptSupport) {
         this.javaScriptSupport = javaScriptSupport;
-        this.pushTargetModels = new LinkedList<>();
+        this.pushTargetModels = new LinkedList<PushTargetModel>();
     }
 
     @Override

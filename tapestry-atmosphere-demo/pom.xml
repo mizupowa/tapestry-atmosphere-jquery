@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lazan</groupId>
 	<artifactId>tapestry-atmosphere-demo</artifactId>
-	<version>0.0.6.2</version>
+	<version>0.0.7.1</version>
 	<packaging>war</packaging>
 	<name>${project.artifactId}</name>
 	<dependencies>
@@ -90,7 +90,7 @@
 
 	<properties>
 		<servlet.version>2.5</servlet.version>
-		<atmosphere.version>2.2.3</atmosphere.version>
+		<atmosphere.version>2.3.5</atmosphere.version>
 		<atmosphere-compat.version>2.0.1</atmosphere-compat.version>
         <tapestry-jquery-version>3.3.7</tapestry-jquery-version>
 	</properties>

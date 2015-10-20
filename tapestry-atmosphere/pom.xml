@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lazan</groupId>
 	<artifactId>tapestry-atmosphere</artifactId>
-	<version>0.0.6.2</version>
+	<version>0.0.7.1</version>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
 	<dependencies>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.atmosphere</groupId>
 			<artifactId>atmosphere-runtime</artifactId>
-			<version>2.2.3</version>
+			<version>2.3.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -51,8 +51,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.6</source>
+					<target>1.6</target>
 					<optimize>true</optimize>
 				</configuration>
 			</plugin>

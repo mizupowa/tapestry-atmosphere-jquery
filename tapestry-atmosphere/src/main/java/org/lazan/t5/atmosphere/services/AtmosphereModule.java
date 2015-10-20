@@ -8,12 +8,7 @@ import org.apache.tapestry5.ioc.annotations.Startup;
 import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
-import org.atmosphere.cpr.ApplicationConfig;
-import org.atmosphere.cpr.AtmosphereFramework;
-import org.atmosphere.cpr.AtmosphereHandler;
-import org.atmosphere.cpr.AtmosphereResourceEventListener;
-import org.atmosphere.cpr.AtmosphereResourceFactory;
-import org.atmosphere.cpr.BroadcasterFactory;
+import org.atmosphere.cpr.*;
 import org.lazan.t5.atmosphere.services.internal.AtmosphereBroadcasterImpl;
 import org.lazan.t5.atmosphere.services.internal.AtmosphereHandlerImpl;
 import org.lazan.t5.atmosphere.services.internal.AtmosphereHttpServletRequestFilter;
@@ -56,11 +51,11 @@ public class AtmosphereModule {
 	}
 	
 	public static BroadcasterFactory buildBroadcasterFactory() {
-		return BroadcasterFactory.getDefault();
+		return new DefaultBroadcasterFactory();
 	}
 	
 	public static AtmosphereResourceFactory buildAtmosphereResourceFactory() {
-		return AtmosphereResourceFactory.getDefault();
+		return new DefaultAtmosphereResourceFactory();
 	}
 	
 	public static void contributeHttpServletRequestHandler(
