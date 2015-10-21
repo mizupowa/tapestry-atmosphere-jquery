@@ -23,7 +23,8 @@ var TapestryAtmosphereEvents =function () {
                 for (i = 0; i < pushTargets.length; ++i) {
                     pushTarget = pushTargets[i];
                     if (typeof document.getElementById(pushTarget.id) === 'undefined' || document.getElementById(pushTarget.id) == null) {
-                        pushTargets.slice(i, 1);
+                        pushTargets.splice(i, 1);
+                        i--;
                     }
                 }
 
@@ -39,13 +40,18 @@ var TapestryAtmosphereEvents =function () {
                     containingPageName: options.containingPageName,
                 };
                 subsocket.push(JSON.stringify(data));
+                for (i = 0; i < targets.length; ++i) {
+                    pushTarget = targets[i];
+                    if (typeof document.getElementById(pushTarget.id) !== 'undefined' || document.getElementById(pushTarget.id) != null) {
+                        $(document.getElementById(pushTarget.id)).trigger(TapestryAtmosphereEvents.EVENT_TAPESTRY_ATMOS_READY)
+                    }
+                }
             }
 
             request.onOpen = function (response) {
                 if (options.pushTargets && options.pushTargets.length > 0) {
                     updatePushTarget(options.pushTargets);
                 }
-                $(document).trigger(TapestryAtmosphereEvents.EVENT_TAPESTRY_ATMOS_READY)
             };
 
             request.onMessage = function (response) {

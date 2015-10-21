@@ -3,17 +3,44 @@
 <body>
 <atmos:container transport="websocket" fallbackTransport="long-polling">
     <t:zone t:id="updateZone" id="updateZone">
-        <t:actionlink t:id="updateLink" zone="updateZone">Update</t:actionlink>
-        <t:actionlink t:id="updatePush" zone="updateZone">Update</t:actionlink>
+        <t:actionlink t:id="updateLink" zone="updateZone">Update</t:actionlink>&nbsp;&nbsp;
+        <t:actionlink t:id="updatePush" zone="updateZone">Push</t:actionlink>&nbsp;&nbsp;
+        <t:actionlink t:id="plusUpdate" zone="updateZone">plus</t:actionlink>
         <t:if test="updated">
             <t:atmos.pushTarget
+                    t:id="pushTarget"
                     topics="testAjaxUpdate"
                     event="update"
                     update="prepend"
                     class="well"/>
-            <t:block t:id="updateBlock">Update ${tmpCount}</t:block>
+            <script>
+                $('#${pushTarget.clientId}').on(TapestryAtmosphereEvents.EVENT_TAPESTRY_ATMOS_READY, function (evet) {
+                    $.get('${updatePush.getLink().toURI()}');
+                    if (typeof console !== 'undefined') {
+                        console.log(evet.target);
+                    }
+                });
+            </script>
         </t:if>
     </t:zone>
+    <t:zone t:id="zonePlus" id="zonePlus">
+        <t:if test="plus">
+            <t:atmos.pushTarget
+                    t:id="pushTarget1"
+                    topics="testAjaxUpdate"
+                    event="update"
+                    update="prepend"
+                    class="well"/>
+            <script>
+                $('#${pushTarget1.clientId}').on(TapestryAtmosphereEvents.EVENT_TAPESTRY_ATMOS_READY, function (evet) {
+                    if (typeof console !== 'undefined') {
+                        console.log(evet.target);
+                    }
+                });
+            </script>
+        </t:if>
+    </t:zone>
+    <t:block t:id="updateBlock">Update ${tmpCount}</t:block>
 </atmos:container>
 </body>
 </html>
