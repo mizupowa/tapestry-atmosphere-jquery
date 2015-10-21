@@ -107,11 +107,11 @@ public class Container {
 			acJson.put(ac.get(String.class, i));
 		}
 		config.put("ac", acJson);
-		config.put("activePageName", resources.getPageName());
-		config.put("containingPageName", resources.getPageName());
 
 		for (PushTargetModel pushTarget : pushTargets) {
 			JSONObject targetConfig = new JSONObject();
+			targetConfig.put("activePageName", pushTarget.getActivePageName());
+			targetConfig.put("containingPageName", pushTarget.getContainingPageName());
 			targetConfig.put("topics", new JSONArray(pushTarget.getTopics().toArray()));
 			targetConfig.put("id", pushTarget.getClientId());
 			targetConfig.put("nestedComponentId", pushTarget.getNestedId());

@@ -8,9 +8,13 @@ public class PushTargetModel {
 	private final UpdateStrategy updateStrategy;
 	private final String clientId;
 	private final String nestedId;
+	private String activePageName;
+	private String containingPageName;
 
-	public PushTargetModel(List<String> topics, String event, UpdateStrategy updateStrategy, String clientId, String nestedId) {
+	public PushTargetModel(List<String> topics, String event, UpdateStrategy updateStrategy, String clientId, String nestedId, String containingPageName,String activePageName) {
 		super();
+		this.containingPageName = containingPageName;
+		this.activePageName = activePageName;
 		this.topics = topics;
 		this.event = event;
 		this.updateStrategy = updateStrategy;
@@ -36,5 +40,13 @@ public class PushTargetModel {
 
 	public String getNestedId() {
 		return nestedId;
+	}
+
+	public String getActivePageName() {
+		return activePageName;
+	}
+
+	public String getContainingPageName() {
+		return containingPageName;
 	}
 }

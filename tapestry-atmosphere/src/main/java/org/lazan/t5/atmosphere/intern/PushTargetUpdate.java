@@ -30,6 +30,8 @@ public class PushTargetUpdate implements Runnable, ContainerModel {
         JSONArray config = new JSONArray();
         for (PushTargetModel pushTarget : pushTargetModels) {
             JSONObject targetConfig = new JSONObject();
+            targetConfig.put("activePageName", pushTarget.getActivePageName());
+            targetConfig.put("containingPageName", pushTarget.getContainingPageName());
             targetConfig.put("topics", new JSONArray(pushTarget.getTopics().toArray()));
             targetConfig.put("id", pushTarget.getClientId());
             targetConfig.put("nestedComponentId", pushTarget.getNestedId());

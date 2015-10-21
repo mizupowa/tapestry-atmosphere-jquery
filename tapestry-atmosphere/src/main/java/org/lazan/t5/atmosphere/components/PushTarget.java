@@ -45,8 +45,11 @@ public class PushTarget extends Any {
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
+    @Inject
+    private ComponentResources componentResources;
+
 	void afterRender() {
-        PushTargetModel targetModel = new PushTargetModel(topics, event, update, getClientId(), resources.getNestedId());
+        PushTargetModel targetModel = new PushTargetModel(topics, event, update, getClientId(), resources.getNestedId(),resources.getPageName(),resources.getPageName());
         if(environment.peek(ContainerModel.class) == null){
             PushTargetUpdate update = new PushTargetUpdate(javaScriptSupport);
             environment.push(ContainerModel.class,update);

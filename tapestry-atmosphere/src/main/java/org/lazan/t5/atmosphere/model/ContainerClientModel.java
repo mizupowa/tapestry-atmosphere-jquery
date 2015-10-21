@@ -13,15 +13,11 @@ import org.apache.tapestry5.EventContext;
 public class ContainerClientModel {
 	private final Collection<PushTargetClientModel> pushTargets;
 	private final EventContext pageActivationContext;
-	private final String activePageName;
-	private final String containingPageName;
 	private final Map<String, List<PushTargetClientModel>> pushTargetsByTopic;
 	
-	public ContainerClientModel(String activePageName, String containingPageName, EventContext pageActivationContext,
+	public ContainerClientModel(EventContext pageActivationContext,
 			Collection<PushTargetClientModel> pushTargets) {
 		super();
-		this.activePageName = activePageName;
-		this.containingPageName = containingPageName;
 		this.pageActivationContext = pageActivationContext;
 		this.pushTargets = pushTargets;
 		this.pushTargetsByTopic = new LinkedHashMap<String, List<PushTargetClientModel>>();
@@ -47,14 +43,6 @@ public class ContainerClientModel {
 
 	public EventContext getPageActivationContext() {
 		return pageActivationContext;
-	}
-
-	public String getActivePageName() {
-		return activePageName;
-	}
-
-	public String getContainingPageName() {
-		return containingPageName;
 	}
 
 	public List<PushTargetClientModel> getPushTargetsForTopic(String topic) {

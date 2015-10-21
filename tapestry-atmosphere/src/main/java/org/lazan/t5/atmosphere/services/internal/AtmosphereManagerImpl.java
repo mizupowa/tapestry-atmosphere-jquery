@@ -99,11 +99,9 @@ public class AtmosphereManagerImpl implements AtmosphereManager {
 			JSONObject pushTarget = pushTargets.getJSONObject(i);
 			pushTargetModels.add(createPushTargetClientModel(pushTarget));
 		}
-		String activePageName = data.getString("activePageName");
-		String containingPageName = data.getString("containingPageName");
 		EventContext pageActivationContext = createEventContext(ac);
 
-		ContainerClientModel containerModel = new ContainerClientModel(activePageName, containingPageName, pageActivationContext, pushTargetModels);
+		ContainerClientModel containerModel = new ContainerClientModel(pageActivationContext, pushTargetModels);
 		return containerModel;
 	}
 
@@ -114,11 +112,12 @@ public class AtmosphereManagerImpl implements AtmosphereManager {
 			String topic = jsonTopics.getString(j);
 			topics.add(topic);
 		}
-
+		String activePageName = pushTarget.getString("activePageName");
+		String containingPageName = pushTarget.getString("containingPageName");
 		String nestedComponentId = pushTarget.getString("nestedComponentId");
 		String event = pushTarget.getString("event");
 		String clientId = pushTarget.getString("id");
-		PushTargetClientModel pushTargetModel = new PushTargetClientModel(nestedComponentId, clientId, event, topics);
+		PushTargetClientModel pushTargetModel = new PushTargetClientModel(nestedComponentId, clientId, event, topics,activePageName,containingPageName);
 		return pushTargetModel;
 	}
 	

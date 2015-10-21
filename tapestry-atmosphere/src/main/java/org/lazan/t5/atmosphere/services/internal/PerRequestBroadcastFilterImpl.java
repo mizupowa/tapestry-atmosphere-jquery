@@ -71,8 +71,8 @@ public class PerRequestBroadcastFilterImpl implements PerRequestBroadcastFilter 
 			EventContext eventContext) 
 	{
 		return new ComponentEventRequestParameters(
-			containerModel.getActivePageName(),
-			containerModel.getContainingPageName(), 
+				pushTarget.getActivePageName(),
+				pushTarget.getContainingPageName(),
 			pushTarget.getNestedComponentId(), 
 			pushTarget.getEvent(),
 			containerModel.getPageActivationContext(), 
