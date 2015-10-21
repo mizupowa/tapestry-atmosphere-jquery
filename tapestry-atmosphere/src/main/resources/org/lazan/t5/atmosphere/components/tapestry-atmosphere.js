@@ -1,3 +1,10 @@
+var TapestryAtmosphereEvents =function () {
+    var EVENT_TAPESTRY_ATMOS_PREFIX = "tapestry-atmos:";
+    return {
+        EVENT_TAPESTRY_ATMOS_READY : EVENT_TAPESTRY_ATMOS_PREFIX + "ready"
+    };
+}();
+
 (function () {
 
     var atmContainer = {};
@@ -38,6 +45,7 @@
                 if (options.pushTargets && options.pushTargets.length > 0) {
                     updatePushTarget(options.pushTargets);
                 }
+                $(document).trigger(TapestryAtmosphereEvents.EVENT_TAPESTRY_ATMOS_READY)
             };
 
             request.onMessage = function (response) {
