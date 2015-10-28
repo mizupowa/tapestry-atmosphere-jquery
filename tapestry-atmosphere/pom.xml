@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lazan</groupId>
 	<artifactId>tapestry-atmosphere</artifactId>
-	<version>0.0.7.3</version>
+	<version>0.0.7.4</version>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
 	<dependencies>
@@ -97,7 +97,7 @@
 	</build>
 
 	<properties>
-		<tapestry.version>5.3.7</tapestry.version>
+		<tapestry.version>5.3.8</tapestry.version>
 		<servlet.version>2.5</servlet.version>
 	</properties>
 </project>
