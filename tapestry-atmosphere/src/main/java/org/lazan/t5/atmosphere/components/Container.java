@@ -80,13 +80,15 @@ public class Container {
 	}
 	
 	void afterRenderBody(MarkupWriter markupWriter) {
-		JSONObject config = createConfig();
+		JSONObject config = createConfig(baseUrlSource,secure,applicationGlobals,uri, options, transport, fallbackTransport,logLevel,clientId,pageGlobals,pushTargets);
 		javascriptSupport.addInitializerCall("atmosphereContainer", config);
 		environment.pop(ContainerModel.class);
         markupWriter.end();
 	}
 	
-	JSONObject createConfig() {
+	public static JSONObject createConfig(BaseURLSource baseUrlSource,boolean secure,ApplicationGlobals applicationGlobals,
+										  String uri,JSONObject options,String transport,String fallbackTransport,
+										  String logLevel,String clientId, PageGlobals pageGlobals, List<PushTargetModel> pushTargets) {
 		String baseUrl = baseUrlSource.getBaseURL(secure);
 		String contextPath = applicationGlobals.getServletContext().getContextPath();
 		String url = String.format("%s%s/%s/", baseUrl, contextPath, uri);
@@ -123,7 +125,7 @@ public class Container {
 		return config;
 	}
 
-	void putIfNotNull(JSONObject json, String key, Object value) {
+	private static void putIfNotNull(JSONObject json, String key, Object value) {
 		if (value != null) {
 			json.put(key, value);
 		}
