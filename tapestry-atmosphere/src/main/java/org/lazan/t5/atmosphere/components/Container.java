@@ -104,11 +104,13 @@ public class Container {
         config.put("containerId",clientId);
 		config.put("connectOptions", connectOptions);
 		EventContext ac = pageGlobals.getPageActivationContext();
-		JSONArray acJson = new JSONArray();
-		for (int i = 0; i < ac.getCount(); ++i) {
-			acJson.put(ac.get(String.class, i));
+		if(ac != null) {
+			JSONArray acJson = new JSONArray();
+			for (int i = 0; i < ac.getCount(); ++i) {
+				acJson.put(ac.get(String.class, i));
+			}
+			config.put("ac", acJson);
 		}
-		config.put("ac", acJson);
 
 		for (PushTargetModel pushTarget : pushTargets) {
 			JSONObject targetConfig = new JSONObject();
