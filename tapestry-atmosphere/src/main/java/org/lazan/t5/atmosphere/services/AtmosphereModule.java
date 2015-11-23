@@ -104,6 +104,7 @@ public class AtmosphereModule {
         config.add(ApplicationConfig.OBJECT_FACTORY, TapestryAtmosphereObjectFactory.class.getName());
         config.add(ApplicationConfig.BROADCAST_FILTER_CLASSES, PerRequestBroadcastFilterImpl.class.getName());
         config.add(ApplicationConfig.PROPERTY_SESSION_SUPPORT, "true");
+        config.add(ApplicationConfig.JSR356_MAPPING_PATH, "/atmosphere");
     }
 
     /**

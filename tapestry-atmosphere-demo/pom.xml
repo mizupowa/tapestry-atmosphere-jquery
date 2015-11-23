@@ -13,7 +13,12 @@
 			<artifactId>tapestry-atmosphere</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-        <dependency>
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-runtime</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
             <version>${tapestry-jquery-version}</version>
@@ -90,9 +95,9 @@
 
 	<properties>
 		<servlet.version>2.5</servlet.version>
-		<atmosphere.version>2.3.5</atmosphere.version>
+		<atmosphere.version>2.4.0</atmosphere.version>
 		<atmosphere-compat.version>2.0.1</atmosphere-compat.version>
-        <tapestry-jquery-version>3.3.7</tapestry-jquery-version>
+        <tapestry-jquery-version>3.4.2</tapestry-jquery-version>
 	</properties>
 
 	<profiles>
